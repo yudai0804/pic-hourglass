@@ -7,14 +7,15 @@ https://www.microchip.com/en-us/tools-resources/archives/mplab-ecosystem
 ```
 tar -xvf MPLABX-v5.35-linux-installer.tar
 ```
-```
-sudo ./MPLABX-v5.35-linux-installer.sh
-```
 
-このままでは使えないので、以下のコマンドを入力
+Ubuntu(Debian)の場合、以下のコマンドを入力
 ref:https://developerhelp.microchip.com/xwiki/bin/view/software-tools/ides/x/archive/linux/
 ```
 sudo dpkg --add-architecture i386
 sudo apt update
 sudo apt-get install libc6:i386 libx11-6:i386 libxext6:i386 libstdc++6:i386 libexpat1:i386
+```
+
+```
+sudo ./MPLABX-v5.35-linux-installer.sh
 ```

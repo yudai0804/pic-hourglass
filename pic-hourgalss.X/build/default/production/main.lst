@@ -1,0 +1,1287 @@
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[205]: Found directive in column 1. (LIST)
+                      00001 LIST P=PIC16F1827
+                      00002 #include<p16f1827.inc>
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ; Build date : Jan 06 2020
+                      00005 ;  MPASM PIC16F1827 processor include
+                      00006 ; 
+                      00007 ;  (c) Copyright 1999-2020 Microchip Technology, All rights reserved
+                      00008 ;==========================================================================
+                      00009 
+                      01313         LIST
+                      00003 
+  00000070            00004 CNT0    EQU     0x70
+  00000071            00005 CNT1    EQU     0x71
+  00000072            00006 CNT2    EQU     0x72
+  00000073            00007 CNT EQU 0x73
+Warning[207]: Found label after column 1. (TMP)
+  00000074            00008  TMP EQU 0x74
+Warning[205]: Found directive in column 1. (__CONFIG)
+8007   0984           00009 __CONFIG        _CONFIG1, _FOSC_INTOSC & _WDTE_OFF & _PWRTE_ON & _MCLRE_OFF & _CP_OFF & _CPD_OFF & _BORE
+                            N_OFF & _CLKOUTEN_OFF & _IESO_OFF & _FCMEN_OFF
+Warning[205]: Found directive in column 1. (__CONFIG)
+8008   1CFF           00010 __CONFIG        _CONFIG2, _WRT_OFF & _PLLEN_OFF & _STVREN_OFF & _BORV_LO & _LVP_OFF
+                      00011 
+Warning[205]: Found directive in column 1. (ORG)
+                      00012 ORG 0x0000
+0000   018C           00013     CLRF PORTA
+0001   018D           00014     CLRF PORTB
+0002   1408           00015     BSF BSR, BSR0
+0003   1488           00016     BSF BSR, BSR1
+                      00017     ; バンク3
+                      00018     ; ディジタル入力を受け入れるようにする
+                      00019     ; CLRF ANSELAをすると何故かRA4の動きがXORみたいな動きをするようになる。
+                      00020     ; 今回はANSELAを行わないことで対応
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0004   018D           00021     CLRF ANSELB
+                      00022     ; バンク1
+0005   1408           00023     BSF BSR, BSR0
+0006   1088           00024     BCF BSR, BSR1
+0007   3000           00025     MOVLW 0x00
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0008   008C           00026     MOVWF TRISA
+0009   3030           00027     MOVLW 0x30
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000A   008D           00028     MOVWF TRISB
+                      00029     ; バンク0
+000B   1008           00030     BCF BSR, BSR0
+000C   018C           00031     CLRF PORTA
+000D   018D           00032     CLRF PORTB
+000E                  00033 LOOP
+000E   30FF           00034     MOVLW 0xff
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000F   00F3           00035     MOVWF CNT
+0010                  00036 STATE0
+Message[305]: Using default destination of 1 (file).
+0010   0BF3           00037     DECFSZ CNT
+0011   2???           00038     GOTO _STATE0
+0012                  00039 STATE1
+Message[305]: Using default destination of 1 (file).
+0012   0BF3           00040     DECFSZ CNT
+0013   2???           00041     GOTO _STATE1
+0014                  00042 STATE2
+Message[305]: Using default destination of 1 (file).
+0014   0BF3           00043     DECFSZ CNT
+0015   2???           00044     GOTO _STATE2
+0016                  00045 STATE3
+Message[305]: Using default destination of 1 (file).
+0016   0BF3           00046     DECFSZ CNT
+0017   2???           00047     GOTO _STATE3
+0018                  00048 STATE4
+Message[305]: Using default destination of 1 (file).
+0018   0BF3           00049     DECFSZ CNT
+0019   2???           00050     GOTO _CLEAR
+001A   2???           00051     GOTO LOOP
+                      00052 
+001B                  00053 _STATE0
+001B   2???           00054     CALL CLOCK0
+001C   2???           00055     GOTO STATE0
+Warning[207]: Found label after column 1. (_STATE1)
+001D                  00056  _STATE1
+001D   2???           00057     CALL CLOCK1
+001E   2???           00058     GOTO STATE1
+001F                  00059 _STATE2
+001F   2???           00060     CALL CLOCK2
+0020   2???           00061     GOTO STATE2
+0021                  00062 _STATE3
+0021   2???           00063     CALL CLOCK3
+0022   2???           00064     GOTO STATE3
+0023                  00065 _CLEAR
+0023   2???           00066     CALL CLEAR
+0024   2???           00067     GOTO STATE4
+                      00068 
+0025                  00069 CLOCK0
+0025   2???           00070     CALL D1
+0026   2???           00071     CALL TIMER_10MS
+0027   2???           00072     CALL D2
+0028   2???           00073     CALL TIMER_10MS
+0029   2???           00074     CALL D3
+002A   2???           00075     CALL TIMER_10MS
+002B   2???           00076     CALL D4
+002C   2???           00077     CALL TIMER_10MS
+002D   2???           00078     CALL D5
+002E   2???           00079     CALL TIMER_10MS
+002F   2???           00080     CALL D6
+0030   2???           00081     CALL TIMER_10MS
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0031   0008           00082     RETURN
+                      00083 
+0032                  00084 CLOCK1
+0032   2???           00085     CALL D4
+0033   2???           00086     CALL TIMER_10MS
+0034   2???           00087     CALL D5
+0035   2???           00088     CALL TIMER_10MS
+0036   2???           00089     CALL D6
+0037   2???           00090     CALL TIMER_10MS
+0038   2???           00091     CALL D10
+0039   2???           00092     CALL TIMER_10MS
+003A   2???           00093     CALL D11
+003B   2???           00094     CALL TIMER_10MS
+003C   2???           00095     CALL D12
+003D   2???           00096     CALL TIMER_10MS
+003E   0008           00097     RETURN
+                      00098 
+003F                  00099 CLOCK2
+003F   2???           00100     CALL D6
+0040   2???           00101     CALL TIMER_10MS
+0041   2???           00102     CALL D8
+0042   2???           00103     CALL TIMER_10MS
+0043   2???           00104     CALL D9
+0044   2???           00105     CALL TIMER_10MS
+0045   2???           00106     CALL D10
+0046   2???           00107     CALL TIMER_10MS
+0047   2???           00108     CALL D11
+0048   2???           00109     CALL TIMER_10MS
+0049   2???           00110     CALL D12
+004A   2???           00111     CALL TIMER_10MS
+004B   0008           00112     RETURN
+                      00113     
+004C                  00114 CLOCK3
+004C   2???           00115     CALL D7
+004D   2???           00116     CALL TIMER_10MS
+004E   2???           00117     CALL D8
+004F   2???           00118     CALL TIMER_10MS
+0050   2???           00119     CALL D9
+0051   2???           00120     CALL TIMER_10MS
+0052   2???           00121     CALL D10
+0053   2???           00122     CALL TIMER_10MS
+0054   2???           00123     CALL D11
+0055   2???           00124     CALL TIMER_10MS
+0056   2???           00125     CALL D12
+0057   2???           00126     CALL TIMER_10MS
+0058   0008           00127     RETURN
+                      00128 
+0059                  00129 CLEAR
+0059   080C           00130     MOVF PORTA, W
+Warning[202]: Argument out of range.  Least significant bits used.
+005A   3911           00131     ANDLW 0b11100011
+005B   3E00           00132     ADDLW 0x00
+005C   008C           00133     MOVWF PORTA
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+005D   080D           00134     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+005E   3900           00135     ANDLW 0x11110000
+005F   3E00           00136     ADDLW 0x00
+0060   008D           00137     MOVWF PORTB
+0061   2???           00138     CALL TIMER_10MS
+0062   2???           00139     CALL TIMER_10MS
+0063   2???           00140     CALL TIMER_10MS
+0064   2???           00141     CALL TIMER_10MS
+0065   2???           00142     CALL TIMER_10MS
+0066   2???           00143     CALL TIMER_10MS
+0067   0008           00144     RETURN
+                      00145 
+0068                  00146 ALL
+0068   2???           00147     CALL D1
+0069   2???           00148     CALL TIMER_1000MS
+006A   2???           00149     CALL D2
+006B   2???           00150     CALL TIMER_1000MS
+006C   2???           00151     CALL D3
+006D   2???           00152     CALL TIMER_1000MS
+006E   2???           00153     CALL D4
+006F   2???           00154     CALL TIMER_1000MS
+0070   2???           00155     CALL D5
+0071   2???           00156     CALL TIMER_1000MS
+0072   2???           00157     CALL D6
+0073   2???           00158     CALL TIMER_1000MS
+0074   2???           00159     CALL D7
+0075   2???           00160     CALL TIMER_1000MS
+0076   2???           00161     CALL D8
+0077   2???           00162     CALL TIMER_1000MS
+0078   2???           00163     CALL D9
+0079   2???           00164     CALL TIMER_1000MS
+007A   2???           00165     CALL D10
+007B   2???           00166     CALL TIMER_1000MS
+007C   2???           00167     CALL D11
+007D   2???           00168     CALL TIMER_1000MS
+007E   2???           00169     CALL D12
+007F   2???           00170     CALL TIMER_1000MS
+0080   0008           00171     RETURN
+                      00172     
+                      00173     ; 10 cycle
+0081                  00174 D1
+Warning[202]: Argument out of range.  Least significant bits used.
+0081   3011           00175     MOVLW 0b11100011
+0082   058C           00176     ANDWF PORTA, 1
+0083   080D           00177     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+0084   3900           00178     ANDLW 0x11110000
+0085   3E07           00179     ADDLW 0x07
+0086   008D           00180     MOVWF PORTB
+0087   3004           00181     MOVLW 0x04
+0088   078C           00182     ADDWF PORTA, 1
+0089   0008           00183     RETURN
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE  5
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+008A                  00184 D2
+Warning[202]: Argument out of range.  Least significant bits used.
+008A   3011           00185     MOVLW 0b11100011
+008B   058C           00186     ANDWF PORTA, 1
+008C   080D           00187     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+008D   3900           00188     ANDLW 0x11110000
+008E   3E0B           00189     ADDLW 0x0b
+008F   008D           00190     MOVWF PORTB
+0090   3004           00191     MOVLW 0x04
+0091   078C           00192     ADDWF PORTA, 1
+0092   0008           00193     RETURN
+0093                  00194 D3
+Warning[202]: Argument out of range.  Least significant bits used.
+0093   3011           00195     MOVLW 0b11100011
+0094   058C           00196     ANDWF PORTA, 1
+0095   080D           00197     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+0096   3900           00198     ANDLW 0x11110000
+0097   3E0D           00199     ADDLW 0x0d
+0098   008D           00200     MOVWF PORTB
+0099   3004           00201     MOVLW 0x04
+009A   078C           00202     ADDWF PORTA, 1
+009B   0008           00203     RETURN
+009C                  00204 D4
+Warning[202]: Argument out of range.  Least significant bits used.
+009C   3011           00205     MOVLW 0b11100011
+009D   058C           00206     ANDWF PORTA, 1
+009E   080D           00207     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+009F   3900           00208     ANDLW 0x11110000
+00A0   3E07           00209     ADDLW 0x07
+00A1   008D           00210     MOVWF PORTB
+00A2   3008           00211     MOVLW 0x08
+00A3   078C           00212     ADDWF PORTA, 1
+00A4   0008           00213     RETURN
+00A5                  00214 D5
+Warning[202]: Argument out of range.  Least significant bits used.
+00A5   3011           00215     MOVLW 0b11100011
+00A6   058C           00216     ANDWF PORTA, 1
+00A7   080D           00217     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+00A8   3900           00218     ANDLW 0x11110000
+00A9   3E0B           00219     ADDLW 0x0b
+00AA   008D           00220     MOVWF PORTB
+00AB   3008           00221     MOVLW 0x08
+00AC   078C           00222     ADDWF PORTA, 1
+00AD   0008           00223     RETURN
+00AE                  00224 D6
+Warning[202]: Argument out of range.  Least significant bits used.
+00AE   3011           00225     MOVLW 0b11100011
+00AF   058C           00226     ANDWF PORTA, 1
+00B0   080D           00227     MOVF PORTB, W
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[202]: Argument out of range.  Least significant bits used.
+00B1   3900           00228     ANDLW 0x11110000
+00B2   3E07           00229     ADDLW 0x07
+00B3   008D           00230     MOVWF PORTB
+00B4   3010           00231     MOVLW 0x10
+00B5   078C           00232     ADDWF PORTA, 1
+00B6   0008           00233     RETURN
+00B7                  00234 D7
+Warning[202]: Argument out of range.  Least significant bits used.
+00B7   3011           00235     MOVLW 0b11100011
+00B8   058C           00236     ANDWF PORTA, 1
+00B9   080D           00237     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+00BA   3900           00238     ANDLW 0x11110000
+00BB   3E0E           00239     ADDLW 0x0e
+00BC   008D           00240     MOVWF PORTB
+00BD   3004           00241     MOVLW 0x04
+00BE   078C           00242     ADDWF PORTA, 1
+00BF   0008           00243     RETURN
+00C0                  00244 D8
+Warning[202]: Argument out of range.  Least significant bits used.
+00C0   3011           00245     MOVLW 0b11100011
+00C1   058C           00246     ANDWF PORTA, 1
+00C2   080D           00247     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+00C3   3900           00248     ANDLW 0x11110000
+00C4   3E0D           00249     ADDLW 0x0d
+00C5   008D           00250     MOVWF PORTB
+00C6   3008           00251     MOVLW 0x08
+00C7   078C           00252     ADDWF PORTA, 1
+00C8   0008           00253     RETURN
+00C9                  00254 D9
+Warning[202]: Argument out of range.  Least significant bits used.
+00C9   3011           00255     MOVLW 0b11100011
+00CA   058C           00256     ANDWF PORTA, 1
+00CB   080D           00257     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+00CC   3900           00258     ANDLW 0x11110000
+00CD   3E0E           00259     ADDLW 0x0e
+00CE   008D           00260     MOVWF PORTB
+00CF   3008           00261     MOVLW 0x08
+00D0   078C           00262     ADDWF PORTA, 1
+00D1   0008           00263     RETURN
+00D2                  00264 D10
+Warning[202]: Argument out of range.  Least significant bits used.
+00D2   3011           00265     MOVLW 0b11100011
+00D3   058C           00266     ANDWF PORTA, 1
+00D4   080D           00267     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+00D5   3900           00268     ANDLW 0x11110000
+00D6   3E0B           00269     ADDLW 0x0b
+00D7   008D           00270     MOVWF PORTB
+00D8   3010           00271     MOVLW 0x10
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00D9   078C           00272     ADDWF PORTA, 1
+00DA   0008           00273     RETURN
+00DB                  00274 D11
+Warning[202]: Argument out of range.  Least significant bits used.
+00DB   3011           00275     MOVLW 0b11100011
+00DC   058C           00276     ANDWF PORTA, 1
+00DD   080D           00277     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+00DE   3900           00278     ANDLW 0x11110000
+00DF   3E0D           00279     ADDLW 0x0d
+00E0   008D           00280     MOVWF PORTB
+00E1   3010           00281     MOVLW 0x10
+00E2   078C           00282     ADDWF PORTA, 1
+00E3   0008           00283     RETURN
+00E4                  00284 D12
+Warning[202]: Argument out of range.  Least significant bits used.
+00E4   3011           00285     MOVLW 0b11100011
+00E5   058C           00286     ANDWF PORTA, 1
+00E6   080D           00287     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+00E7   3900           00288     ANDLW 0x11110000
+00E8   3E0E           00289     ADDLW 0x0e
+00E9   008D           00290     MOVWF PORTB
+00EA   3010           00291     MOVLW 0x10
+00EB   078C           00292     ADDWF PORTA, 1
+00EC   0008           00293     RETURN
+                      00294     
+00ED                  00295 TIMER_1MS
+00ED   3013           00296         MOVLW   D'19'
+00EE   00F1           00297         MOVWF   CNT1
+00EF                  00298 TIMER_1MS_LABEL1
+00EF   0000           00299         NOP
+00F0   0000           00300         NOP
+00F1   0BF1           00301         DECFSZ  CNT1,F
+00F2   2???           00302         GOTO    TIMER_1MS_LABEL1
+00F3   0008           00303         RETURN
+                      00304 
+00F4                  00305 TIMER_10MS
+00F4   3013           00306         MOVLW   D'19'
+00F5   00F1           00307         MOVWF   CNT1
+00F6                  00308 TIMER_10MS_LABEL1
+00F6   0000           00309         NOP
+00F7   0000           00310         NOP
+00F8   0BF1           00311         DECFSZ  CNT1,F
+00F9   2???           00312         GOTO    TIMER_10MS_LABEL1
+00FA   0008           00313         RETURN
+                      00314 
+                      00315         
+                      00316     
+00FB                  00317 TIMER_1000MS
+00FB   30AD           00318         MOVLW   D'173'
+00FC   00F1           00319         MOVWF   CNT1
+00FD                  00320 TIMER_1000MS_LABEL1
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00FD   30BF           00321         MOVLW   D'191'
+00FE   00F2           00322         MOVWF   CNT2
+00FF                  00323 TIMER_1000MS_LABEL2
+00FF   0BF2           00324         DECFSZ  CNT2,F
+0100   2???           00325         GOTO    TIMER_1000MS_LABEL2
+0101   0000           00326         NOP
+0102   0BF1           00327         DECFSZ  CNT1,F
+0103   2???           00328         GOTO    TIMER_1000MS_LABEL1
+0104   0000           00329         NOP
+0105   0008           00330         RETURN
+                      00331 
+Warning[205]: Found directive in column 1. (end)
+0984 1CFF             00332 end
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE  9
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+ABDEN                             00000000
+ABDOVF                            00000007
+ACKDT                             00000005
+ACKEN                             00000004
+ACKSTAT                           00000006
+ACKTIM                            00000007
+ADCON0                            0000009D
+ADCON1                            0000009E
+ADCS0                             00000004
+ADCS1                             00000005
+ADCS2                             00000006
+ADDEN                             00000003
+ADFM                              00000007
+ADFVR0                            00000000
+ADFVR1                            00000001
+ADGO                              00000001
+ADIE                              00000006
+ADIF                              00000006
+ADNREF                            00000002
+ADON                              00000000
+ADPREF0                           00000000
+ADPREF1                           00000001
+ADRES                             0000009B
+ADRESH                            0000009C
+ADRESL                            0000009B
+AHEN                              00000001
+ALL                               00000068
+ANSA0                             00000000
+ANSA1                             00000001
+ANSA2                             00000002
+ANSA3                             00000003
+ANSA4                             00000004
+ANSB1                             00000001
+ANSB2                             00000002
+ANSB3                             00000003
+ANSB4                             00000004
+ANSB5                             00000005
+ANSB6                             00000006
+ANSB7                             00000007
+ANSELA                            0000018C
+ANSELB                            0000018D
+APFCON0                           0000011D
+APFCON1                           0000011E
+BAUDCON                           0000019F
+BCL1IE                            00000003
+BCL1IF                            00000003
+BCL2IE                            00000001
+BCL2IF                            00000001
+BF                                00000000
+BOEN                              00000004
+BORCON                            00000116
+BORRDY                            00000000
+BRG16                             00000003
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 10
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+BRGH                              00000002
+BSR                               00000008
+BSR0                              00000000
+BSR1                              00000001
+BSR2                              00000002
+BSR3                              00000003
+BSR4                              00000004
+BSR_SHAD                          00000FE6
+C                                 00000000
+C1HYS                             00000001
+C1IE                              00000005
+C1IF                              00000005
+C1INTN                            00000006
+C1INTP                            00000007
+C1NCH0                            00000000
+C1NCH1                            00000001
+C1OE                              00000005
+C1ON                              00000007
+C1OUT                             00000006
+C1PCH0                            00000004
+C1PCH1                            00000005
+C1POL                             00000004
+C1SP                              00000002
+C1SYNC                            00000000
+C1TSEL0                           00000000
+C1TSEL1                           00000001
+C2HYS                             00000001
+C2IE                              00000006
+C2IF                              00000006
+C2INTN                            00000006
+C2INTP                            00000007
+C2NCH0                            00000000
+C2NCH1                            00000001
+C2OE                              00000005
+C2ON                              00000007
+C2OUT                             00000006
+C2PCH0                            00000004
+C2PCH1                            00000005
+C2POL                             00000004
+C2SP                              00000002
+C2SYNC                            00000000
+C2TSEL0                           00000002
+C2TSEL1                           00000003
+C3TSEL0                           00000004
+C3TSEL1                           00000005
+C4TSEL0                           00000006
+C4TSEL1                           00000007
+CCP1AS                            00000295
+CCP1AS0                           00000004
+CCP1AS1                           00000005
+CCP1AS2                           00000006
+CCP1ASE                           00000007
+CCP1CON                           00000293
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 11
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CCP1IE                            00000002
+CCP1IF                            00000002
+CCP1M0                            00000000
+CCP1M1                            00000001
+CCP1M2                            00000002
+CCP1M3                            00000003
+CCP1SEL                           00000000
+CCP2AS                            0000029C
+CCP2AS0                           00000004
+CCP2AS1                           00000005
+CCP2AS2                           00000006
+CCP2ASE                           00000007
+CCP2CON                           0000029A
+CCP2IE                            00000000
+CCP2IF                            00000000
+CCP2M0                            00000000
+CCP2M1                            00000001
+CCP2M2                            00000002
+CCP2M3                            00000003
+CCP2SEL                           00000003
+CCP3CON                           00000313
+CCP3IE                            00000004
+CCP3IF                            00000004
+CCP3M0                            00000000
+CCP3M1                            00000001
+CCP3M2                            00000002
+CCP3M3                            00000003
+CCP4CON                           0000031A
+CCP4IE                            00000005
+CCP4IF                            00000005
+CCP4M0                            00000000
+CCP4M1                            00000001
+CCP4M2                            00000002
+CCP4M3                            00000003
+CCPR1                             00000291
+CCPR1H                            00000292
+CCPR1L                            00000291
+CCPR2                             00000298
+CCPR2H                            00000299
+CCPR2L                            00000298
+CCPR3                             00000311
+CCPR3H                            00000312
+CCPR3L                            00000311
+CCPR4                             00000318
+CCPR4H                            00000319
+CCPR4L                            00000318
+CCPTMRS                           0000029E
+CCPTMRS0                          0000029E
+CDAFVR0                           00000002
+CDAFVR1                           00000003
+CFGS                              00000006
+CHS0                              00000002
+CHS1                              00000003
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 12
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+CHS2                              00000004
+CHS3                              00000005
+CHS4                              00000006
+CKE                               00000006
+CKP                               00000004
+CLEAR                             00000059
+CLKRCON                           0000039A
+CLKRDC0                           00000003
+CLKRDC1                           00000004
+CLKRDIV0                          00000000
+CLKRDIV1                          00000001
+CLKRDIV2                          00000002
+CLKREN                            00000007
+CLKROE                            00000006
+CLKRSLR                           00000005
+CLOCK0                            00000025
+CLOCK1                            00000032
+CLOCK2                            0000003F
+CLOCK3                            0000004C
+CM1CON0                           00000111
+CM1CON1                           00000112
+CM2CON0                           00000113
+CM2CON1                           00000114
+CMOUT                             00000115
+CNT                               00000073
+CNT0                              00000070
+CNT1                              00000071
+CNT2                              00000072
+CPSCH0                            00000000
+CPSCH1                            00000001
+CPSCH2                            00000002
+CPSCH3                            00000003
+CPSCON0                           0000001E
+CPSCON1                           0000001F
+CPSON                             00000007
+CPSOUT                            00000001
+CPSRNG0                           00000002
+CPSRNG1                           00000003
+CREN                              00000004
+CSRC                              00000007
+C_SHAD                            00000000
+D1                                00000081
+D10                               000000D2
+D11                               000000DB
+D12                               000000E4
+D2                                0000008A
+D3                                00000093
+D4                                0000009C
+D5                                000000A5
+D6                                000000AE
+D7                                000000B7
+D8                                000000C0
+D9                                000000C9
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 13
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+DACCON0                           00000118
+DACCON1                           00000119
+DACEN                             00000007
+DACLPS                            00000006
+DACNSS                            00000000
+DACOE                             00000005
+DACPSS0                           00000002
+DACPSS1                           00000003
+DACR0                             00000000
+DACR1                             00000001
+DACR2                             00000002
+DACR3                             00000003
+DACR4                             00000004
+DC                                00000001
+DC1B0                             00000004
+DC1B1                             00000005
+DC2B0                             00000004
+DC2B1                             00000005
+DC3B0                             00000004
+DC3B1                             00000005
+DC4B0                             00000004
+DC4B1                             00000005
+DC_SHAD                           00000001
+DHEN                              00000000
+D_NOT_A                           00000005
+ECCP1AS                           00000295
+ECCP2AS                           0000029C
+EEADR                             00000191
+EEADRH                            00000192
+EEADRL                            00000191
+EECON1                            00000195
+EECON2                            00000196
+EEDAT                             00000193
+EEDATH                            00000194
+EEDATL                            00000193
+EEIE                              00000004
+EEIF                              00000004
+EEPGD                             00000007
+F                                 00000001
+FERR                              00000002
+FREE                              00000004
+FSR0                              00000004
+FSR0H                             00000005
+FSR0H_SHAD                        00000FE9
+FSR0L                             00000004
+FSR0L_SHAD                        00000FE8
+FSR1                              00000006
+FSR1H                             00000007
+FSR1H_SHAD                        00000FEB
+FSR1L                             00000006
+FSR1L_SHAD                        00000FEA
+FVRCON                            00000117
+FVREN                             00000007
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 14
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+FVRRDY                            00000006
+GCEN                              00000007
+GIE                               00000007
+GO                                00000001
+GO_NOT_DONE                       00000001
+HFIOFL                            00000003
+HFIOFR                            00000004
+HFIOFS                            00000000
+INDF0                             00000000
+INDF1                             00000001
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IOCBF                             00000396
+IOCBF0                            00000000
+IOCBF1                            00000001
+IOCBF2                            00000002
+IOCBF3                            00000003
+IOCBF4                            00000004
+IOCBF5                            00000005
+IOCBF6                            00000006
+IOCBF7                            00000007
+IOCBN                             00000395
+IOCBN0                            00000000
+IOCBN1                            00000001
+IOCBN2                            00000002
+IOCBN3                            00000003
+IOCBN4                            00000004
+IOCBN5                            00000005
+IOCBN6                            00000006
+IOCBN7                            00000007
+IOCBP                             00000394
+IOCBP0                            00000000
+IOCBP1                            00000001
+IOCBP2                            00000002
+IOCBP3                            00000003
+IOCBP4                            00000004
+IOCBP5                            00000005
+IOCBP6                            00000006
+IOCBP7                            00000007
+IOCIE                             00000003
+IOCIF                             00000000
+IRCF0                             00000003
+IRCF1                             00000004
+IRCF2                             00000005
+IRCF3                             00000006
+LATA                              0000010C
+LATA0                             00000000
+LATA1                             00000001
+LATA2                             00000002
+LATA3                             00000003
+LATA4                             00000004
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 15
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+LATA6                             00000006
+LATA7                             00000007
+LATB                              0000010D
+LATB0                             00000000
+LATB1                             00000001
+LATB2                             00000002
+LATB3                             00000003
+LATB4                             00000004
+LATB5                             00000005
+LATB6                             00000006
+LATB7                             00000007
+LFIOFR                            00000001
+LOOP                              0000000E
+LWLO                              00000005
+MC1OUT                            00000000
+MC2OUT                            00000001
+MDBIT                             00000000
+MDCARH                            0000039F
+MDCARL                            0000039E
+MDCH0                             00000000
+MDCH1                             00000001
+MDCH2                             00000002
+MDCH3                             00000003
+MDCHODIS                          00000007
+MDCHPOL                           00000006
+MDCHSYNC                          00000005
+MDCL0                             00000000
+MDCL1                             00000001
+MDCL2                             00000002
+MDCL3                             00000003
+MDCLODIS                          00000007
+MDCLPOL                           00000006
+MDCLSYNC                          00000005
+MDCON                             0000039C
+MDEN                              00000007
+MDMS0                             00000000
+MDMS1                             00000001
+MDMS2                             00000002
+MDMS3                             00000003
+MDMSODIS                          00000007
+MDOE                              00000006
+MDOPOL                            00000004
+MDOUT                             00000003
+MDSLR                             00000005
+MDSRC                             0000039D
+MFIOFR                            00000002
+NOT_BOR                           00000000
+NOT_PD                            00000003
+NOT_POR                           00000001
+NOT_RI                            00000002
+NOT_RMCLR                         00000003
+NOT_T1SYNC                        00000002
+NOT_TO                            00000004
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 16
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+NOT_WPUEN                         00000007
+OERR                              00000001
+OPTION_REG                        00000095
+OSCCON                            00000099
+OSCSTAT                           0000009A
+OSCTUNE                           00000098
+OSFIE                             00000007
+OSFIF                             00000007
+OSTS                              00000005
+P                                 00000004
+P1CSEL                            00000001
+P1DC0                             00000000
+P1DC1                             00000001
+P1DC2                             00000002
+P1DC3                             00000003
+P1DC4                             00000004
+P1DC5                             00000005
+P1DC6                             00000006
+P1DSEL                            00000002
+P1M0                              00000006
+P1M1                              00000007
+P1RSEN                            00000007
+P2BSEL                            00000004
+P2DC0                             00000000
+P2DC1                             00000001
+P2DC2                             00000002
+P2DC3                             00000003
+P2DC4                             00000004
+P2DC5                             00000005
+P2DC6                             00000006
+P2M0                              00000006
+P2M1                              00000007
+P2RSEN                            00000007
+PCIE                              00000006
+PCL                               00000002
+PCLATH                            0000000A
+PCLATH_SHAD                       00000FE7
+PCON                              00000096
+PEIE                              00000006
+PEN                               00000002
+PIE1                              00000091
+PIE2                              00000092
+PIE3                              00000093
+PIE4                              00000094
+PIR1                              00000011
+PIR2                              00000012
+PIR3                              00000013
+PIR4                              00000014
+PLLR                              00000006
+PORTA                             0000000C
+PORTB                             0000000D
+PR2                               0000001B
+PR4                               00000416
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 17
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+PR6                               0000041D
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+PSS1AC0                           00000002
+PSS1AC1                           00000003
+PSS1BD0                           00000000
+PSS1BD1                           00000001
+PSS2AC0                           00000002
+PSS2AC1                           00000003
+PSS2BD0                           00000000
+PSS2BD1                           00000001
+PSTR1CON                          00000296
+PSTR2CON                          0000029D
+PWM1CON                           00000294
+PWM2CON                           0000029B
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RA5                               00000005
+RA6                               00000006
+RA7                               00000007
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RCEN                              00000003
+RCIDL                             00000006
+RCIE                              00000005
+RCIF                              00000005
+RCREG                             00000199
+RCSTA                             0000019D
+RD                                00000000
+RSEN                              00000001
+RX9                               00000006
+RX9D                              00000000
+RXDTSEL                           00000007
+R_NOT_W                           00000002
+S                                 00000003
+SBCDE                             00000002
+SBOREN                            00000007
+SCIE                              00000005
+SCKP                              00000004
+SCS0                              00000000
+SCS1                              00000001
+SDAHT                             00000003
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 18
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SDO1SEL                           00000006
+SEN                               00000000
+SENDB                             00000003
+SMP                               00000007
+SP1BRG                            0000019B
+SP1BRGH                           0000019C
+SP1BRGL                           0000019B
+SPBRG                             0000019B
+SPBRGH                            0000019C
+SPBRGL                            0000019B
+SPEN                              00000007
+SPLLEN                            00000007
+SRCLK0                            00000004
+SRCLK1                            00000005
+SRCLK2                            00000006
+SRCON0                            0000011A
+SRCON1                            0000011B
+SREN                              00000005
+SRLEN                             00000007
+SRNQEN                            00000002
+SRPR                              00000000
+SRPS                              00000001
+SRQEN                             00000003
+SRRC1E                            00000000
+SRRC2E                            00000001
+SRRCKE                            00000002
+SRRPE                             00000003
+SRSC1E                            00000004
+SRSC2E                            00000005
+SRSCKE                            00000006
+SRSPE                             00000007
+SS1SEL                            00000005
+SSP1ADD                           00000212
+SSP1BUF                           00000211
+SSP1CON1                          00000215
+SSP1CON2                          00000216
+SSP1CON3                          00000217
+SSP1IE                            00000003
+SSP1IF                            00000003
+SSP1MSK                           00000213
+SSP1STAT                          00000214
+SSP2ADD                           0000021A
+SSP2BUF                           00000219
+SSP2CON1                          0000021D
+SSP2CON2                          0000021E
+SSP2CON3                          0000021F
+SSP2IE                            00000000
+SSP2IF                            00000000
+SSP2MSK                           0000021B
+SSP2STAT                          0000021C
+SSPADD                            00000212
+SSPBUF                            00000211
+SSPCON                            00000215
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 19
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+SSPCON1                           00000215
+SSPCON2                           00000216
+SSPCON3                           00000217
+SSPEN                             00000005
+SSPM0                             00000000
+SSPM1                             00000001
+SSPM2                             00000002
+SSPM3                             00000003
+SSPMSK                            00000213
+SSPOV                             00000006
+SSPSTAT                           00000214
+STATE0                            00000010
+STATE1                            00000012
+STATE2                            00000014
+STATE3                            00000016
+STATE4                            00000018
+STATUS                            00000003
+STATUS_SHAD                       00000FE4
+STKOVF                            00000007
+STKPTR                            00000FED
+STKUNF                            00000006
+STR1A                             00000000
+STR1B                             00000001
+STR1C                             00000002
+STR1D                             00000003
+STR1SYNC                          00000004
+STR2A                             00000000
+STR2B                             00000001
+STR2C                             00000002
+STR2D                             00000003
+STR2SYNC                          00000004
+SWDTEN                            00000000
+SYNC                              00000004
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+T0XCS                             00000000
+T1CKPS0                           00000004
+T1CKPS1                           00000005
+T1CON                             00000018
+T1GCON                            00000019
+T1GGO                             00000003
+T1GPOL                            00000006
+T1GSPM                            00000004
+T1GSS0                            00000000
+T1GSS1                            00000001
+T1GTM                             00000005
+T1GVAL                            00000002
+T1OSCEN                           00000003
+T1OSCR                            00000007
+T2CKPS0                           00000000
+T2CKPS1                           00000001
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 20
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+T2CON                             0000001C
+T2OUTPS0                          00000003
+T2OUTPS1                          00000004
+T2OUTPS2                          00000005
+T2OUTPS3                          00000006
+T4CKPS0                           00000000
+T4CKPS1                           00000001
+T4CON                             00000417
+T4OUTPS0                          00000003
+T4OUTPS1                          00000004
+T4OUTPS2                          00000005
+T4OUTPS3                          00000006
+T6CKPS0                           00000000
+T6CKPS1                           00000001
+T6CON                             0000041E
+T6OUTPS0                          00000003
+T6OUTPS1                          00000004
+T6OUTPS2                          00000005
+T6OUTPS3                          00000006
+TIMER_1000MS                      000000FB
+TIMER_1000MS_LABEL1               000000FD
+TIMER_1000MS_LABEL2               000000FF
+TIMER_10MS                        000000F4
+TIMER_10MS_LABEL1                 000000F6
+TIMER_1MS                         000000ED
+TIMER_1MS_LABEL1                  000000EF
+TMP                               00000074
+TMR0                              00000015
+TMR0CS                            00000005
+TMR0IE                            00000005
+TMR0IF                            00000002
+TMR0SE                            00000004
+TMR1                              00000016
+TMR1CS0                           00000006
+TMR1CS1                           00000007
+TMR1GE                            00000007
+TMR1GIE                           00000007
+TMR1GIF                           00000007
+TMR1H                             00000017
+TMR1IE                            00000000
+TMR1IF                            00000000
+TMR1L                             00000016
+TMR1ON                            00000000
+TMR2                              0000001A
+TMR2IE                            00000001
+TMR2IF                            00000001
+TMR2ON                            00000002
+TMR4                              00000415
+TMR4IE                            00000001
+TMR4IF                            00000001
+TMR4ON                            00000002
+TMR6                              0000041C
+TMR6IE                            00000003
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 21
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TMR6IF                            00000003
+TMR6ON                            00000002
+TOSH                              00000FEF
+TOSL                              00000FEE
+TRISA                             0000008C
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISA5                            00000005
+TRISA6                            00000006
+TRISA7                            00000007
+TRISB                             0000008D
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+TRMT                              00000001
+TSEN                              00000005
+TSRNG                             00000004
+TUN0                              00000000
+TUN1                              00000001
+TUN2                              00000002
+TUN3                              00000003
+TUN4                              00000004
+TUN5                              00000005
+TX9                               00000006
+TX9D                              00000000
+TXCKSEL                           00000000
+TXEN                              00000005
+TXIE                              00000004
+TXIF                              00000004
+TXREG                             0000019A
+TXSTA                             0000019E
+UA                                00000001
+W                                 00000000
+WCOL                              00000007
+WDTCON                            00000097
+WDTPS0                            00000001
+WDTPS1                            00000002
+WDTPS2                            00000003
+WDTPS3                            00000004
+WDTPS4                            00000005
+WPUA                              0000020C
+WPUA5                             00000005
+WPUB                              0000020D
+WPUB0                             00000000
+WPUB1                             00000001
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 22
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+WPUB2                             00000002
+WPUB3                             00000003
+WPUB4                             00000004
+WPUB5                             00000005
+WPUB6                             00000006
+WPUB7                             00000007
+WR                                00000001
+WREG                              00000009
+WREG_SHAD                         00000FE5
+WREN                              00000002
+WRERR                             00000003
+WUE                               00000001
+Z                                 00000002
+Z_SHAD                            00000002
+_BOREN_NSLEEP                     00003DFF
+_BOREN_OFF                        000039FF
+_BOREN_ON                         00003FFF
+_BOREN_SBODEN                     00003BFF
+_BORV_19                          00003FFF
+_BORV_HI                          00003BFF
+_BORV_LO                          00003FFF
+_CLEAR                            00000023
+_CLKOUTEN_OFF                     00003FFF
+_CLKOUTEN_ON                      000037FF
+_CONFIG1                          00008007
+_CONFIG2                          00008008
+_CPD_OFF                          00003FFF
+_CPD_ON                           00003EFF
+_CP_OFF                           00003FFF
+_CP_ON                            00003F7F
+_DEVID1                           00008006
+_FCMEN_OFF                        00001FFF
+_FCMEN_ON                         00003FFF
+_FOSC_ECH                         00003FFF
+_FOSC_ECL                         00003FFD
+_FOSC_ECM                         00003FFE
+_FOSC_EXTRC                       00003FFB
+_FOSC_HS                          00003FFA
+_FOSC_INTOSC                      00003FFC
+_FOSC_LP                          00003FF8
+_FOSC_XT                          00003FF9
+_IDLOC0                           00008000
+_IDLOC1                           00008001
+_IDLOC2                           00008002
+_IDLOC3                           00008003
+_IESO_OFF                         00002FFF
+_IESO_ON                          00003FFF
+_LVP_OFF                          00001FFF
+_LVP_ON                           00003FFF
+_MCLRE_OFF                        00003FBF
+_MCLRE_ON                         00003FFF
+_PLLEN_OFF                        00003EFF
+_PLLEN_ON                         00003FFF
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 23
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FDF
+_STATE0                           0000001B
+_STATE1                           0000001D
+_STATE2                           0000001F
+_STATE3                           00000021
+_STVREN_OFF                       00003DFF
+_STVREN_ON                        00003FFF
+_WDTE_NSLEEP                      00003FF7
+_WDTE_OFF                         00003FE7
+_WDTE_ON                          00003FFF
+_WDTE_SWDTEN                      00003FEF
+_WRT_ALL                          00003FFC
+_WRT_BOOT                         00003FFE
+_WRT_HALF                         00003FFD
+_WRT_OFF                          00003FFF
+__16F1827                         00000001
+
+Errors   :     0
+Warnings :    33 reported,     0 suppressed
+Messages :     8 reported,     0 suppressed
+
+

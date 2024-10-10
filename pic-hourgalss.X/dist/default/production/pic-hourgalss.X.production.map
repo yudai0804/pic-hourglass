@@ -1,11 +1,11 @@
 MPLINK 5.09, LINKER
-Linker Map File - Created Thu Oct 10 03:56:07 2024
+Linker Map File - Created Thu Oct 10 14:55:32 2024
 
                                  Section Info
                   Section       Type    Address   Location Size(Bytes)
                 ---------  ---------  ---------  ---------  ---------
-                   .org_0       code   0x000000    program   0x00020c
-                   .cinit    romdata   0x000106    program   0x000004
+                   .org_0       code   0x000000    program   0x0002b4
+                   .cinit    romdata   0x00015a    program   0x000004
 .config_8007_BUILD/DEFAULT/PRODUCTION/MAIN.O       code   0x008007    program   0x000002
 .config_8008_BUILD/DEFAULT/PRODUCTION/MAIN.O       code   0x008008    program   0x000002
 
@@ -14,51 +14,55 @@ Linker Map File - Created Thu Oct 10 03:56:07 2024
                               Program Memory Usage 
                                Start         End      
                            ---------   ---------      
-                            0x000000    0x000107      
+                            0x000000    0x00015b      
                             0x008007    0x008008      
-            266 out of 4359 program addresses used, program memory utilization is 6%
+            350 out of 4359 program addresses used, program memory utilization is 8%
 
 
 
                               Symbols - Sorted by Name
                      Name    Address   Location    Storage File                     
                 ---------  ---------  ---------  --------- ---------                
-                      ALL   0x000068    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                    CLEAR   0x000059    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   CLOCK0   0x000025    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   CLOCK1   0x000032    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   CLOCK2   0x00003f    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   CLOCK3   0x00004c    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                       D1   0x000081    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                      D10   0x0000d2    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                      D11   0x0000db    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                      D12   0x0000e4    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                       D2   0x00008a    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                       D3   0x000093    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                       D4   0x00009c    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                       D5   0x0000a5    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                       D6   0x0000ae    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                       D7   0x0000b7    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                       D8   0x0000c0    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                       D9   0x0000c9    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                      ALL   0x0000b7    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                    CLEAR   0x0000ae    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                       D1   0x0000d0    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                      D10   0x000121    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                      D11   0x00012a    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                      D12   0x000133    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                       D2   0x0000d9    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                       D3   0x0000e2    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                       D4   0x0000eb    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                       D5   0x0000f4    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                       D6   0x0000fd    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                       D7   0x000106    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                       D8   0x00010f    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                       D9   0x000118    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
                      LOOP   0x00000e    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   STATE0   0x000010    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   STATE1   0x000012    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   STATE2   0x000014    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   STATE3   0x000016    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   STATE4   0x000018    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-             TIMER_1000MS   0x0000fb    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-      TIMER_1000MS_LABEL1   0x0000fd    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-      TIMER_1000MS_LABEL2   0x0000ff    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-               TIMER_10MS   0x0000f4    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-        TIMER_10MS_LABEL1   0x0000f6    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                TIMER_1MS   0x0000ed    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-         TIMER_1MS_LABEL1   0x0000ef    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   _CLEAR   0x000023    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                  _STATE0   0x00001b    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                  _STATE1   0x00001d    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                  _STATE2   0x00001f    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                  _STATE3   0x000021    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                   STATE0   0x000012    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                   STATE1   0x000017    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                   STATE2   0x00001b    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                   STATE3   0x00001f    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                   STATE4   0x000023    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+             TIMER_1000MS   0x00014f    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+      TIMER_1000MS_LABEL1   0x000151    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+      TIMER_1000MS_LABEL2   0x000153    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+               TIMER_10MS   0x000145    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+        TIMER_10MS_LABEL1   0x000147    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+        TIMER_10MS_LABEL2   0x000149    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                TIMER_LED   0x00013c    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+         TIMER_LED_LABEL1   0x00013e    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+         TIMER_LED_LABEL2   0x000140    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                  _STATE0   0x000026    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+              _STATE0_DEC   0x00004a    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+               _STATE0_ON   0x00003c    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                  _STATE1   0x00004c    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                  _STATE2   0x000059    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+              _STATE2_DEC   0x00007e    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+               _STATE2_ON   0x000070    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                  _STATE3   0x000080    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                  _STATE4   0x00008d    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+              _STATE4_DEC   0x0000ac    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+               _STATE4_ON   0x00009e    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
 
 
 
@@ -66,40 +70,44 @@ Linker Map File - Created Thu Oct 10 03:56:07 2024
                      Name    Address   Location    Storage File                     
                 ---------  ---------  ---------  --------- ---------                
                      LOOP   0x00000e    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   STATE0   0x000010    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   STATE1   0x000012    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   STATE2   0x000014    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   STATE3   0x000016    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   STATE4   0x000018    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                  _STATE0   0x00001b    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                  _STATE1   0x00001d    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                  _STATE2   0x00001f    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                  _STATE3   0x000021    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   _CLEAR   0x000023    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   CLOCK0   0x000025    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   CLOCK1   0x000032    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   CLOCK2   0x00003f    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                   CLOCK3   0x00004c    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                    CLEAR   0x000059    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                      ALL   0x000068    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                       D1   0x000081    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                       D2   0x00008a    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                       D3   0x000093    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                       D4   0x00009c    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                       D5   0x0000a5    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                       D6   0x0000ae    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                       D7   0x0000b7    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                       D8   0x0000c0    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                       D9   0x0000c9    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                      D10   0x0000d2    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                      D11   0x0000db    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                      D12   0x0000e4    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-                TIMER_1MS   0x0000ed    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-         TIMER_1MS_LABEL1   0x0000ef    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-               TIMER_10MS   0x0000f4    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-        TIMER_10MS_LABEL1   0x0000f6    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-             TIMER_1000MS   0x0000fb    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-      TIMER_1000MS_LABEL1   0x0000fd    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
-      TIMER_1000MS_LABEL2   0x0000ff    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                   STATE0   0x000012    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                   STATE1   0x000017    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                   STATE2   0x00001b    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                   STATE3   0x00001f    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                   STATE4   0x000023    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                  _STATE0   0x000026    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+               _STATE0_ON   0x00003c    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+              _STATE0_DEC   0x00004a    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                  _STATE1   0x00004c    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                  _STATE2   0x000059    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+               _STATE2_ON   0x000070    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+              _STATE2_DEC   0x00007e    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                  _STATE3   0x000080    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                  _STATE4   0x00008d    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+               _STATE4_ON   0x00009e    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+              _STATE4_DEC   0x0000ac    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                    CLEAR   0x0000ae    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                      ALL   0x0000b7    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                       D1   0x0000d0    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                       D2   0x0000d9    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                       D3   0x0000e2    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                       D4   0x0000eb    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                       D5   0x0000f4    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                       D6   0x0000fd    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                       D7   0x000106    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                       D8   0x00010f    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                       D9   0x000118    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                      D10   0x000121    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                      D11   0x00012a    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                      D12   0x000133    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+                TIMER_LED   0x00013c    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+         TIMER_LED_LABEL1   0x00013e    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+         TIMER_LED_LABEL2   0x000140    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+               TIMER_10MS   0x000145    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+        TIMER_10MS_LABEL1   0x000147    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+        TIMER_10MS_LABEL2   0x000149    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+             TIMER_1000MS   0x00014f    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+      TIMER_1000MS_LABEL1   0x000151    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
+      TIMER_1000MS_LABEL2   0x000153    program     static /home/user/pic-hourglass/pic-hourgalss.X/main.asm
 
 

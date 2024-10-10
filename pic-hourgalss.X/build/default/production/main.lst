@@ -1,4 +1,4 @@
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE  1
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE  1
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
@@ -21,416 +21,526 @@ Warning[205]: Found directive in column 1. (LIST)
   00000070            00004 CNT0    EQU     0x70
   00000071            00005 CNT1    EQU     0x71
   00000072            00006 CNT2    EQU     0x72
-  00000073            00007 CNT EQU 0x73
-Warning[207]: Found label after column 1. (TMP)
-  00000074            00008  TMP EQU 0x74
+  00000073            00007 CNT3 EQU 0x73
+  00000074            00008 CNT4 EQU 0x74
+  000000C8            00009 CNT4_DEFAULT EQU d'200'
+  00000064            00010 CNT4_HALF EQU d'100'
+  00000074            00011 TMP EQU 0x74
 Warning[205]: Found directive in column 1. (__CONFIG)
-8007   0984           00009 __CONFIG        _CONFIG1, _FOSC_INTOSC & _WDTE_OFF & _PWRTE_ON & _MCLRE_OFF & _CP_OFF & _CPD_OFF & _BORE
+8007   0984           00012 __CONFIG        _CONFIG1, _FOSC_INTOSC & _WDTE_OFF & _PWRTE_ON & _MCLRE_OFF & _CP_OFF & _CPD_OFF & _BORE
                             N_OFF & _CLKOUTEN_OFF & _IESO_OFF & _FCMEN_OFF
 Warning[205]: Found directive in column 1. (__CONFIG)
-8008   1CFF           00010 __CONFIG        _CONFIG2, _WRT_OFF & _PLLEN_OFF & _STVREN_OFF & _BORV_LO & _LVP_OFF
-                      00011 
+8008   1CFF           00013 __CONFIG        _CONFIG2, _WRT_OFF & _PLLEN_OFF & _STVREN_OFF & _BORV_LO & _LVP_OFF
+                      00014 
 Warning[205]: Found directive in column 1. (ORG)
-                      00012 ORG 0x0000
-0000   018C           00013     CLRF PORTA
-0001   018D           00014     CLRF PORTB
-0002   1408           00015     BSF BSR, BSR0
-0003   1488           00016     BSF BSR, BSR1
-                      00017     ; バンク3
-                      00018     ; ディジタル入力を受け入れるようにする
-                      00019     ; CLRF ANSELAをすると何故かRA4の動きがXORみたいな動きをするようになる。
-                      00020     ; 今回はANSELAを行わないことで対応
+                      00015 ORG 0x0000
+0000   018C           00016     CLRF PORTA
+0001   018D           00017     CLRF PORTB
+0002   1408           00018     BSF BSR, BSR0
+0003   1488           00019     BSF BSR, BSR1
+                      00020     ; バンク3
+                      00021     ; ディジタル入力を受け入れるようにする
+                      00022     ; CLRF ANSELAをすると何故かRA4の動きがXORみたいな動きをするようになる。
+                      00023     ; 今回はANSELAを行わないことで対応
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0004   018D           00021     CLRF ANSELB
-                      00022     ; バンク1
-0005   1408           00023     BSF BSR, BSR0
-0006   1088           00024     BCF BSR, BSR1
-0007   3000           00025     MOVLW 0x00
+0004   018D           00024     CLRF ANSELB
+                      00025     ; バンク1
+0005   1408           00026     BSF BSR, BSR0
+0006   1088           00027     BCF BSR, BSR1
+0007   3000           00028     MOVLW 0x00
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-0008   008C           00026     MOVWF TRISA
-0009   3030           00027     MOVLW 0x30
+0008   008C           00029     MOVWF TRISA
+0009   3030           00030     MOVLW 0x30
 Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
-000A   008D           00028     MOVWF TRISB
-                      00029     ; バンク0
-000B   1008           00030     BCF BSR, BSR0
-000C   018C           00031     CLRF PORTA
-000D   018D           00032     CLRF PORTB
-000E                  00033 LOOP
-000E   30FF           00034     MOVLW 0xff
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE  2
+000A   008D           00031     MOVWF TRISB
+                      00032     ; バンク0
+000B   1008           00033     BCF BSR, BSR0
+000C   018C           00034     CLRF PORTA
+000D   018D           00035     CLRF PORTB
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE  2
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-000F   00F3           00035     MOVWF CNT
-0010                  00036 STATE0
+000E                  00036 LOOP
+000E   30FF           00037     MOVLW 0xff
+000F   00F3           00038     MOVWF CNT3
+0010   30C8           00039     MOVLW CNT4_DEFAULT
+0011   00F4           00040     MOVWF CNT4
+0012                  00041 STATE0
 Message[305]: Using default destination of 1 (file).
-0010   0BF3           00037     DECFSZ CNT
-0011   2???           00038     GOTO _STATE0
-0012                  00039 STATE1
+0012   0BF3           00042     DECFSZ CNT3
+0013   2???           00043     GOTO _STATE0
+0014   30C8           00044     MOVLW CNT4_DEFAULT
+0015   00F4           00045     MOVWF CNT4
+0016   2???           00046     GOTO LOOP
+0017                  00047 STATE1
 Message[305]: Using default destination of 1 (file).
-0012   0BF3           00040     DECFSZ CNT
-0013   2???           00041     GOTO _STATE1
-0014                  00042 STATE2
+0017   0BF3           00048     DECFSZ CNT3
+0018   2???           00049     GOTO _STATE1
+0019   30C8           00050     MOVLW CNT4_DEFAULT
+001A   00F4           00051     MOVWF CNT4
+001B                  00052 STATE2
 Message[305]: Using default destination of 1 (file).
-0014   0BF3           00043     DECFSZ CNT
-0015   2???           00044     GOTO _STATE2
-0016                  00045 STATE3
+001B   0BF3           00053     DECFSZ CNT3
+001C   2???           00054     GOTO _STATE2
+001D   30C8           00055     MOVLW CNT4_DEFAULT
+001E   00F4           00056     MOVWF CNT4
+001F                  00057 STATE3
 Message[305]: Using default destination of 1 (file).
-0016   0BF3           00046     DECFSZ CNT
-0017   2???           00047     GOTO _STATE3
-0018                  00048 STATE4
+001F   0BF3           00058     DECFSZ CNT3
+0020   2???           00059     GOTO _STATE3
+0021   30C8           00060     MOVLW CNT4_DEFAULT
+0022   00F4           00061     MOVWF CNT4
+0023                  00062 STATE4
 Message[305]: Using default destination of 1 (file).
-0018   0BF3           00049     DECFSZ CNT
-0019   2???           00050     GOTO _CLEAR
-001A   2???           00051     GOTO LOOP
-                      00052 
-001B                  00053 _STATE0
-001B   2???           00054     CALL CLOCK0
-001C   2???           00055     GOTO STATE0
-Warning[207]: Found label after column 1. (_STATE1)
-001D                  00056  _STATE1
-001D   2???           00057     CALL CLOCK1
-001E   2???           00058     GOTO STATE1
-001F                  00059 _STATE2
-001F   2???           00060     CALL CLOCK2
-0020   2???           00061     GOTO STATE2
-0021                  00062 _STATE3
-0021   2???           00063     CALL CLOCK3
-0022   2???           00064     GOTO STATE3
-0023                  00065 _CLEAR
-0023   2???           00066     CALL CLEAR
-0024   2???           00067     GOTO STATE4
-                      00068 
-0025                  00069 CLOCK0
-0025   2???           00070     CALL D1
-0026   2???           00071     CALL TIMER_10MS
-0027   2???           00072     CALL D2
-0028   2???           00073     CALL TIMER_10MS
-0029   2???           00074     CALL D3
-002A   2???           00075     CALL TIMER_10MS
-002B   2???           00076     CALL D4
-002C   2???           00077     CALL TIMER_10MS
-002D   2???           00078     CALL D5
-002E   2???           00079     CALL TIMER_10MS
-002F   2???           00080     CALL D6
-0030   2???           00081     CALL TIMER_10MS
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE  3
+0023   0BF3           00063     DECFSZ CNT3
+0024   2???           00064     GOTO _STATE4
+0025   2???           00065     GOTO LOOP
+                      00066 
+0026                  00067 _STATE0
+0026   2???           00068     GOTO _STATE0_ON
+0027   0874           00069     MOVF CNT4, W
+0028   3C64           00070     SUBLW CNT4_HALF
+0029   1C03           00071     BTFSS STATUS, C
+                      00072     ; 点滅
+002A   2???           00073     CALL D4
+002B   2???           00074     CALL TIMER_LED
+002C   2???           00075     CALL D5
+002D   2???           00076     CALL TIMER_LED
+002E   2???           00077     CALL D6
+002F   2???           00078     CALL TIMER_LED
+0030   2???           00079     CALL D4
+0031   2???           00080     CALL TIMER_LED
+0032   2???           00081     CALL D5
+0033   2???           00082     CALL TIMER_LED
+0034   2???           00083     CALL D6
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE  3
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-0031   0008           00082     RETURN
-                      00083 
-0032                  00084 CLOCK1
-0032   2???           00085     CALL D4
-0033   2???           00086     CALL TIMER_10MS
-0034   2???           00087     CALL D5
-0035   2???           00088     CALL TIMER_10MS
-0036   2???           00089     CALL D6
-0037   2???           00090     CALL TIMER_10MS
-0038   2???           00091     CALL D10
-0039   2???           00092     CALL TIMER_10MS
-003A   2???           00093     CALL D11
-003B   2???           00094     CALL TIMER_10MS
-003C   2???           00095     CALL D12
-003D   2???           00096     CALL TIMER_10MS
-003E   0008           00097     RETURN
-                      00098 
-003F                  00099 CLOCK2
-003F   2???           00100     CALL D6
-0040   2???           00101     CALL TIMER_10MS
-0041   2???           00102     CALL D8
-0042   2???           00103     CALL TIMER_10MS
-0043   2???           00104     CALL D9
-0044   2???           00105     CALL TIMER_10MS
-0045   2???           00106     CALL D10
-0046   2???           00107     CALL TIMER_10MS
-0047   2???           00108     CALL D11
-0048   2???           00109     CALL TIMER_10MS
-0049   2???           00110     CALL D12
-004A   2???           00111     CALL TIMER_10MS
-004B   0008           00112     RETURN
-                      00113     
-004C                  00114 CLOCK3
-004C   2???           00115     CALL D7
-004D   2???           00116     CALL TIMER_10MS
-004E   2???           00117     CALL D8
-004F   2???           00118     CALL TIMER_10MS
-0050   2???           00119     CALL D9
-0051   2???           00120     CALL TIMER_10MS
-0052   2???           00121     CALL D10
-0053   2???           00122     CALL TIMER_10MS
-0054   2???           00123     CALL D11
-0055   2???           00124     CALL TIMER_10MS
-0056   2???           00125     CALL D12
-0057   2???           00126     CALL TIMER_10MS
-0058   0008           00127     RETURN
-                      00128 
-0059                  00129 CLEAR
-0059   080C           00130     MOVF PORTA, W
-Warning[202]: Argument out of range.  Least significant bits used.
-005A   3911           00131     ANDLW 0b11100011
-005B   3E00           00132     ADDLW 0x00
-005C   008C           00133     MOVWF PORTA
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE  4
+0035   2???           00084     CALL TIMER_LED
+0036   0874           00085     MOVF CNT4, W
+0037   1D03           00086     BTFSS STATUS, Z
+0038   2???           00087     GOTO _STATE0_DEC
+0039   30C8           00088     MOVLW CNT4_DEFAULT
+003A   00F4           00089     MOVWF CNT4
+003B   2???           00090     GOTO STATE0
+003C                  00091 _STATE0_ON
+003C   2???           00092     CALL D1
+003D   2???           00093     CALL TIMER_LED
+003E   2???           00094     CALL D2
+003F   2???           00095     CALL TIMER_LED
+0040   2???           00096     CALL D3
+0041   2???           00097     CALL TIMER_LED
+0042   2???           00098     CALL D4
+0043   2???           00099     CALL TIMER_LED
+0044   2???           00100     CALL D5
+0045   2???           00101     CALL TIMER_LED
+0046   2???           00102     CALL D6
+0047   2???           00103     CALL TIMER_LED
+Message[305]: Using default destination of 1 (file).
+0048   03F4           00104     DECF CNT4
+0049   2???           00105     GOTO STATE0
+004A                  00106 _STATE0_DEC
+Message[305]: Using default destination of 1 (file).
+004A   03F4           00107     DECF CNT4
+004B   2???           00108     GOTO STATE0
+                      00109 
+004C                  00110 _STATE1
+004C   2???           00111     CALL D4
+004D   2???           00112     CALL TIMER_LED
+004E   2???           00113     CALL D5
+004F   2???           00114     CALL TIMER_LED
+0050   2???           00115     CALL D6
+0051   2???           00116     CALL TIMER_LED
+0052   2???           00117     CALL D10
+0053   2???           00118     CALL TIMER_LED
+0054   2???           00119     CALL D11
+0055   2???           00120     CALL TIMER_LED
+0056   2???           00121     CALL D12
+0057   2???           00122     CALL TIMER_LED
+0058   2???           00123     GOTO STATE1
+                      00124 
+0059                  00125 _STATE2
+0059   0874           00126     MOVF CNT4, W
+005A   3C64           00127     SUBLW CNT4_HALF
+005B   1C03           00128     BTFSS STATUS, C
+005C   2???           00129     GOTO _STATE2_ON
+                      00130     ; 点滅
+005D   2???           00131     CALL CLEAR
+005E   2???           00132     CALL D6
+005F   2???           00133     CALL TIMER_LED
+0060   2???           00134     CALL D6
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE  4
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-005D   080D           00134     MOVF PORTB, W
-Warning[202]: Argument out of range.  Least significant bits used.
-005E   3900           00135     ANDLW 0x11110000
-005F   3E00           00136     ADDLW 0x00
-0060   008D           00137     MOVWF PORTB
-0061   2???           00138     CALL TIMER_10MS
-0062   2???           00139     CALL TIMER_10MS
-0063   2???           00140     CALL TIMER_10MS
-0064   2???           00141     CALL TIMER_10MS
-0065   2???           00142     CALL TIMER_10MS
-0066   2???           00143     CALL TIMER_10MS
-0067   0008           00144     RETURN
-                      00145 
-0068                  00146 ALL
-0068   2???           00147     CALL D1
-0069   2???           00148     CALL TIMER_1000MS
-006A   2???           00149     CALL D2
-006B   2???           00150     CALL TIMER_1000MS
-006C   2???           00151     CALL D3
-006D   2???           00152     CALL TIMER_1000MS
-006E   2???           00153     CALL D4
-006F   2???           00154     CALL TIMER_1000MS
-0070   2???           00155     CALL D5
-0071   2???           00156     CALL TIMER_1000MS
-0072   2???           00157     CALL D6
-0073   2???           00158     CALL TIMER_1000MS
-0074   2???           00159     CALL D7
-0075   2???           00160     CALL TIMER_1000MS
-0076   2???           00161     CALL D8
-0077   2???           00162     CALL TIMER_1000MS
-0078   2???           00163     CALL D9
-0079   2???           00164     CALL TIMER_1000MS
-007A   2???           00165     CALL D10
-007B   2???           00166     CALL TIMER_1000MS
-007C   2???           00167     CALL D11
-007D   2???           00168     CALL TIMER_1000MS
-007E   2???           00169     CALL D12
-007F   2???           00170     CALL TIMER_1000MS
-0080   0008           00171     RETURN
-                      00172     
-                      00173     ; 10 cycle
-0081                  00174 D1
-Warning[202]: Argument out of range.  Least significant bits used.
-0081   3011           00175     MOVLW 0b11100011
-0082   058C           00176     ANDWF PORTA, 1
-0083   080D           00177     MOVF PORTB, W
-Warning[202]: Argument out of range.  Least significant bits used.
-0084   3900           00178     ANDLW 0x11110000
-0085   3E07           00179     ADDLW 0x07
-0086   008D           00180     MOVWF PORTB
-0087   3004           00181     MOVLW 0x04
-0088   078C           00182     ADDWF PORTA, 1
-0089   0008           00183     RETURN
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE  5
+0061   2???           00135     CALL TIMER_LED
+0062   2???           00136     CALL D6
+0063   2???           00137     CALL TIMER_LED
+0064   2???           00138     CALL D6
+0065   2???           00139     CALL TIMER_LED
+0066   2???           00140     CALL D6
+0067   2???           00141     CALL TIMER_LED
+0068   2???           00142     CALL D6
+0069   2???           00143     CALL TIMER_LED
+006A   0874           00144     MOVF CNT4, W
+006B   1D03           00145     BTFSS STATUS, Z
+006C   2???           00146     GOTO _STATE2_DEC
+006D   30C8           00147     MOVLW CNT4_DEFAULT
+006E   00F4           00148     MOVWF CNT4
+006F   2???           00149     GOTO STATE2
+0070                  00150 _STATE2_ON
+0070   2???           00151     CALL D4
+0071   2???           00152     CALL TIMER_LED
+0072   2???           00153     CALL D5
+0073   2???           00154     CALL TIMER_LED
+0074   2???           00155     CALL D6
+0075   2???           00156     CALL TIMER_LED
+0076   2???           00157     CALL D10
+0077   2???           00158     CALL TIMER_LED
+0078   2???           00159     CALL D11
+0079   2???           00160     CALL TIMER_LED
+007A   2???           00161     CALL D12
+007B   2???           00162     CALL TIMER_LED
+Message[305]: Using default destination of 1 (file).
+007C   03F4           00163     DECF CNT4
+007D   2???           00164     GOTO STATE2
+007E                  00165 _STATE2_DEC
+Message[305]: Using default destination of 1 (file).
+007E   03F4           00166     DECF CNT4
+007F   2???           00167     GOTO STATE2
+                      00168 
+0080                  00169 _STATE3
+0080   2???           00170     CALL D6
+0081   2???           00171     CALL TIMER_LED
+0082   2???           00172     CALL D8
+0083   2???           00173     CALL TIMER_LED
+0084   2???           00174     CALL D9
+0085   2???           00175     CALL TIMER_LED
+0086   2???           00176     CALL D10
+0087   2???           00177     CALL TIMER_LED
+0088   2???           00178     CALL D11
+0089   2???           00179     CALL TIMER_LED
+008A   2???           00180     CALL D12
+008B   2???           00181     CALL TIMER_LED
+008C   2???           00182     GOTO STATE3
+                      00183 
+008D                  00184 _STATE4
+008D   0874           00185     MOVF CNT4, W
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE  5
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-008A                  00184 D2
+008E   3C64           00186     SUBLW CNT4_HALF
+008F   1C03           00187     BTFSS STATUS, C
+0090   2???           00188     GOTO _STATE4_ON
+                      00189     ; 点滅
+0091   2???           00190     CALL CLEAR
+0092   2???           00191     CALL TIMER_LED
+0093   2???           00192     CALL TIMER_LED
+0094   2???           00193     CALL TIMER_LED
+0095   2???           00194     CALL TIMER_LED
+0096   2???           00195     CALL TIMER_LED
+0097   2???           00196     CALL TIMER_LED
+0098   0874           00197     MOVF CNT4, W
+0099   1D03           00198     BTFSS STATUS, Z
+009A   2???           00199     GOTO _STATE4_DEC
+009B   30C8           00200     MOVLW CNT4_DEFAULT
+009C   00F4           00201     MOVWF CNT4
+009D   2???           00202     GOTO STATE4
+009E                  00203 _STATE4_ON
+009E   2???           00204     CALL D6
+009F   2???           00205     CALL TIMER_LED
+00A0   2???           00206     CALL D8
+00A1   2???           00207     CALL TIMER_LED
+00A2   2???           00208     CALL D9
+00A3   2???           00209     CALL TIMER_LED
+00A4   2???           00210     CALL D10
+00A5   2???           00211     CALL TIMER_LED
+00A6   2???           00212     CALL D11
+00A7   2???           00213     CALL TIMER_LED
+00A8   2???           00214     CALL D12
+00A9   2???           00215     CALL TIMER_LED
+Message[305]: Using default destination of 1 (file).
+00AA   03F4           00216     DECF CNT4
+00AB   2???           00217     GOTO STATE4
+00AC                  00218 _STATE4_DEC
+Message[305]: Using default destination of 1 (file).
+00AC   03F4           00219     DECF CNT4
+00AD   2???           00220     GOTO STATE4
+                      00221 
+00AE                  00222 CLEAR
+00AE   080C           00223     MOVF PORTA, W
 Warning[202]: Argument out of range.  Least significant bits used.
-008A   3011           00185     MOVLW 0b11100011
-008B   058C           00186     ANDWF PORTA, 1
-008C   080D           00187     MOVF PORTB, W
+00AF   3911           00224     ANDLW 0b11100011
+00B0   3E00           00225     ADDLW 0x00
+00B1   008C           00226     MOVWF PORTA
+00B2   080D           00227     MOVF PORTB, W
 Warning[202]: Argument out of range.  Least significant bits used.
-008D   3900           00188     ANDLW 0x11110000
-008E   3E0B           00189     ADDLW 0x0b
-008F   008D           00190     MOVWF PORTB
-0090   3004           00191     MOVLW 0x04
-0091   078C           00192     ADDWF PORTA, 1
-0092   0008           00193     RETURN
-0093                  00194 D3
+00B3   3900           00228     ANDLW 0x11110000
+00B4   3E00           00229     ADDLW 0x00
+00B5   008D           00230     MOVWF PORTB
+00B6   0008           00231     RETURN
+                      00232 
+00B7                  00233 ALL
+00B7   2???           00234     CALL D1
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE  6
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00B8   2???           00235     CALL TIMER_1000MS
+00B9   2???           00236     CALL D2
+00BA   2???           00237     CALL TIMER_1000MS
+00BB   2???           00238     CALL D3
+00BC   2???           00239     CALL TIMER_1000MS
+00BD   2???           00240     CALL D4
+00BE   2???           00241     CALL TIMER_1000MS
+00BF   2???           00242     CALL D5
+00C0   2???           00243     CALL TIMER_1000MS
+00C1   2???           00244     CALL D6
+00C2   2???           00245     CALL TIMER_1000MS
+00C3   2???           00246     CALL D7
+00C4   2???           00247     CALL TIMER_1000MS
+00C5   2???           00248     CALL D8
+00C6   2???           00249     CALL TIMER_1000MS
+00C7   2???           00250     CALL D9
+00C8   2???           00251     CALL TIMER_1000MS
+00C9   2???           00252     CALL D10
+00CA   2???           00253     CALL TIMER_1000MS
+00CB   2???           00254     CALL D11
+00CC   2???           00255     CALL TIMER_1000MS
+00CD   2???           00256     CALL D12
+00CE   2???           00257     CALL TIMER_1000MS
+00CF   0008           00258     RETURN
+                      00259     
+                      00260     ; 10 cycle
+00D0                  00261 D1
 Warning[202]: Argument out of range.  Least significant bits used.
-0093   3011           00195     MOVLW 0b11100011
-0094   058C           00196     ANDWF PORTA, 1
-0095   080D           00197     MOVF PORTB, W
+00D0   3011           00262     MOVLW 0b11100011
+00D1   058C           00263     ANDWF PORTA, F
+00D2   080D           00264     MOVF PORTB, W
 Warning[202]: Argument out of range.  Least significant bits used.
-0096   3900           00198     ANDLW 0x11110000
-0097   3E0D           00199     ADDLW 0x0d
-0098   008D           00200     MOVWF PORTB
-0099   3004           00201     MOVLW 0x04
-009A   078C           00202     ADDWF PORTA, 1
-009B   0008           00203     RETURN
-009C                  00204 D4
+00D3   3900           00265     ANDLW 0x11110000
+00D4   3E07           00266     ADDLW 0x07
+00D5   008D           00267     MOVWF PORTB
+00D6   3004           00268     MOVLW 0x04
+00D7   078C           00269     ADDWF PORTA, F
+00D8   0008           00270     RETURN
+00D9                  00271 D2
 Warning[202]: Argument out of range.  Least significant bits used.
-009C   3011           00205     MOVLW 0b11100011
-009D   058C           00206     ANDWF PORTA, 1
-009E   080D           00207     MOVF PORTB, W
+00D9   3011           00272     MOVLW 0b11100011
+00DA   058C           00273     ANDWF PORTA, F
+00DB   080D           00274     MOVF PORTB, W
 Warning[202]: Argument out of range.  Least significant bits used.
-009F   3900           00208     ANDLW 0x11110000
-00A0   3E07           00209     ADDLW 0x07
-00A1   008D           00210     MOVWF PORTB
-00A2   3008           00211     MOVLW 0x08
-00A3   078C           00212     ADDWF PORTA, 1
-00A4   0008           00213     RETURN
-00A5                  00214 D5
+00DC   3900           00275     ANDLW 0x11110000
+00DD   3E0B           00276     ADDLW 0x0b
+00DE   008D           00277     MOVWF PORTB
+00DF   3004           00278     MOVLW 0x04
+00E0   078C           00279     ADDWF PORTA, F
+00E1   0008           00280     RETURN
+00E2                  00281 D3
 Warning[202]: Argument out of range.  Least significant bits used.
-00A5   3011           00215     MOVLW 0b11100011
-00A6   058C           00216     ANDWF PORTA, 1
-00A7   080D           00217     MOVF PORTB, W
+00E2   3011           00282     MOVLW 0b11100011
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE  7
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+00E3   058C           00283     ANDWF PORTA, F
+00E4   080D           00284     MOVF PORTB, W
 Warning[202]: Argument out of range.  Least significant bits used.
-00A8   3900           00218     ANDLW 0x11110000
-00A9   3E0B           00219     ADDLW 0x0b
-00AA   008D           00220     MOVWF PORTB
-00AB   3008           00221     MOVLW 0x08
-00AC   078C           00222     ADDWF PORTA, 1
-00AD   0008           00223     RETURN
-00AE                  00224 D6
+00E5   3900           00285     ANDLW 0x11110000
+00E6   3E0D           00286     ADDLW 0x0d
+00E7   008D           00287     MOVWF PORTB
+00E8   3004           00288     MOVLW 0x04
+00E9   078C           00289     ADDWF PORTA, F
+00EA   0008           00290     RETURN
+00EB                  00291 D4
 Warning[202]: Argument out of range.  Least significant bits used.
-00AE   3011           00225     MOVLW 0b11100011
-00AF   058C           00226     ANDWF PORTA, 1
-00B0   080D           00227     MOVF PORTB, W
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE  6
+00EB   3011           00292     MOVLW 0b11100011
+00EC   058C           00293     ANDWF PORTA, F
+00ED   080D           00294     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+00EE   3900           00295     ANDLW 0x11110000
+00EF   3E07           00296     ADDLW 0x07
+00F0   008D           00297     MOVWF PORTB
+00F1   3008           00298     MOVLW 0x08
+00F2   078C           00299     ADDWF PORTA, F
+00F3   0008           00300     RETURN
+00F4                  00301 D5
+Warning[202]: Argument out of range.  Least significant bits used.
+00F4   3011           00302     MOVLW 0b11100011
+00F5   058C           00303     ANDWF PORTA, F
+00F6   080D           00304     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+00F7   3900           00305     ANDLW 0x11110000
+00F8   3E0B           00306     ADDLW 0x0b
+00F9   008D           00307     MOVWF PORTB
+00FA   3008           00308     MOVLW 0x08
+00FB   078C           00309     ADDWF PORTA, F
+00FC   0008           00310     RETURN
+00FD                  00311 D6
+Warning[202]: Argument out of range.  Least significant bits used.
+00FD   3011           00312     MOVLW 0b11100011
+00FE   058C           00313     ANDWF PORTA, F
+00FF   080D           00314     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+0100   3900           00315     ANDLW 0x11110000
+0101   3E07           00316     ADDLW 0x07
+0102   008D           00317     MOVWF PORTB
+0103   3010           00318     MOVLW 0x10
+0104   078C           00319     ADDWF PORTA, F
+0105   0008           00320     RETURN
+0106                  00321 D7
+Warning[202]: Argument out of range.  Least significant bits used.
+0106   3011           00322     MOVLW 0b11100011
+0107   058C           00323     ANDWF PORTA, F
+0108   080D           00324     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+0109   3900           00325     ANDLW 0x11110000
+010A   3E0E           00326     ADDLW 0x0e
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE  8
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+010B   008D           00327     MOVWF PORTB
+010C   3004           00328     MOVLW 0x04
+010D   078C           00329     ADDWF PORTA, F
+010E   0008           00330     RETURN
+010F                  00331 D8
+Warning[202]: Argument out of range.  Least significant bits used.
+010F   3011           00332     MOVLW 0b11100011
+0110   058C           00333     ANDWF PORTA, F
+0111   080D           00334     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+0112   3900           00335     ANDLW 0x11110000
+0113   3E0D           00336     ADDLW 0x0d
+0114   008D           00337     MOVWF PORTB
+0115   3008           00338     MOVLW 0x08
+0116   078C           00339     ADDWF PORTA, F
+0117   0008           00340     RETURN
+0118                  00341 D9
+Warning[202]: Argument out of range.  Least significant bits used.
+0118   3011           00342     MOVLW 0b11100011
+0119   058C           00343     ANDWF PORTA, F
+011A   080D           00344     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+011B   3900           00345     ANDLW 0x11110000
+011C   3E0E           00346     ADDLW 0x0e
+011D   008D           00347     MOVWF PORTB
+011E   3008           00348     MOVLW 0x08
+011F   078C           00349     ADDWF PORTA, F
+0120   0008           00350     RETURN
+0121                  00351 D10
+Warning[202]: Argument out of range.  Least significant bits used.
+0121   3011           00352     MOVLW 0b11100011
+0122   058C           00353     ANDWF PORTA, F
+0123   080D           00354     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+0124   3900           00355     ANDLW 0x11110000
+0125   3E0B           00356     ADDLW 0x0b
+0126   008D           00357     MOVWF PORTB
+0127   3010           00358     MOVLW 0x10
+0128   078C           00359     ADDWF PORTA, F
+0129   0008           00360     RETURN
+012A                  00361 D11
+Warning[202]: Argument out of range.  Least significant bits used.
+012A   3011           00362     MOVLW 0b11100011
+012B   058C           00363     ANDWF PORTA, F
+012C   080D           00364     MOVF PORTB, W
+Warning[202]: Argument out of range.  Least significant bits used.
+012D   3900           00365     ANDLW 0x11110000
+012E   3E0D           00366     ADDLW 0x0d
+012F   008D           00367     MOVWF PORTB
+0130   3010           00368     MOVLW 0x10
+0131   078C           00369     ADDWF PORTA, F
+0132   0008           00370     RETURN
+0133                  00371 D12
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE  9
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
 Warning[202]: Argument out of range.  Least significant bits used.
-00B1   3900           00228     ANDLW 0x11110000
-00B2   3E07           00229     ADDLW 0x07
-00B3   008D           00230     MOVWF PORTB
-00B4   3010           00231     MOVLW 0x10
-00B5   078C           00232     ADDWF PORTA, 1
-00B6   0008           00233     RETURN
-00B7                  00234 D7
+0133   3011           00372     MOVLW 0b11100011
+0134   058C           00373     ANDWF PORTA, F
+0135   080D           00374     MOVF PORTB, W
 Warning[202]: Argument out of range.  Least significant bits used.
-00B7   3011           00235     MOVLW 0b11100011
-00B8   058C           00236     ANDWF PORTA, 1
-00B9   080D           00237     MOVF PORTB, W
-Warning[202]: Argument out of range.  Least significant bits used.
-00BA   3900           00238     ANDLW 0x11110000
-00BB   3E0E           00239     ADDLW 0x0e
-00BC   008D           00240     MOVWF PORTB
-00BD   3004           00241     MOVLW 0x04
-00BE   078C           00242     ADDWF PORTA, 1
-00BF   0008           00243     RETURN
-00C0                  00244 D8
-Warning[202]: Argument out of range.  Least significant bits used.
-00C0   3011           00245     MOVLW 0b11100011
-00C1   058C           00246     ANDWF PORTA, 1
-00C2   080D           00247     MOVF PORTB, W
-Warning[202]: Argument out of range.  Least significant bits used.
-00C3   3900           00248     ANDLW 0x11110000
-00C4   3E0D           00249     ADDLW 0x0d
-00C5   008D           00250     MOVWF PORTB
-00C6   3008           00251     MOVLW 0x08
-00C7   078C           00252     ADDWF PORTA, 1
-00C8   0008           00253     RETURN
-00C9                  00254 D9
-Warning[202]: Argument out of range.  Least significant bits used.
-00C9   3011           00255     MOVLW 0b11100011
-00CA   058C           00256     ANDWF PORTA, 1
-00CB   080D           00257     MOVF PORTB, W
-Warning[202]: Argument out of range.  Least significant bits used.
-00CC   3900           00258     ANDLW 0x11110000
-00CD   3E0E           00259     ADDLW 0x0e
-00CE   008D           00260     MOVWF PORTB
-00CF   3008           00261     MOVLW 0x08
-00D0   078C           00262     ADDWF PORTA, 1
-00D1   0008           00263     RETURN
-00D2                  00264 D10
-Warning[202]: Argument out of range.  Least significant bits used.
-00D2   3011           00265     MOVLW 0b11100011
-00D3   058C           00266     ANDWF PORTA, 1
-00D4   080D           00267     MOVF PORTB, W
-Warning[202]: Argument out of range.  Least significant bits used.
-00D5   3900           00268     ANDLW 0x11110000
-00D6   3E0B           00269     ADDLW 0x0b
-00D7   008D           00270     MOVWF PORTB
-00D8   3010           00271     MOVLW 0x10
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE  7
+0136   3900           00375     ANDLW 0x11110000
+0137   3E0E           00376     ADDLW 0x0e
+0138   008D           00377     MOVWF PORTB
+0139   3010           00378     MOVLW 0x10
+013A   078C           00379     ADDWF PORTA, F
+013B   0008           00380     RETURN
+                      00381 
+                      00382 ;500us
+013C                  00383 TIMER_LED
+013C   3009           00384         MOVLW   D'9'
+013D   00F1           00385         MOVWF   CNT1
+013E                  00386 TIMER_LED_LABEL1
+013E   3011           00387         MOVLW   D'17'
+013F   00F2           00388         MOVWF   CNT2
+0140                  00389 TIMER_LED_LABEL2
+0140   0BF2           00390         DECFSZ  CNT2,F
+0141   2???           00391         GOTO    TIMER_LED_LABEL2
+0142   0BF1           00392         DECFSZ  CNT1,F
+0143   2???           00393         GOTO    TIMER_LED_LABEL1
+0144   0008           00394         RETURN
+                      00395 
+0145                  00396 TIMER_10MS
+0145   3013           00397         MOVLW   D'19'
+0146   00F1           00398         MOVWF   CNT1
+0147                  00399 TIMER_10MS_LABEL1
+0147   30AE           00400         MOVLW   D'174'
+0148   00F2           00401         MOVWF   CNT2
+0149                  00402 TIMER_10MS_LABEL2
+0149   0BF2           00403         DECFSZ  CNT2,F
+014A   2???           00404         GOTO    TIMER_10MS_LABEL2
+014B   0BF1           00405         DECFSZ  CNT1,F
+014C   2???           00406         GOTO    TIMER_10MS_LABEL1
+014D   0000           00407         NOP
+014E   0008           00408         RETURN
+                      00409 
+                      00410     
+014F                  00411 TIMER_1000MS
+014F   30AD           00412         MOVLW   D'173'
+0150   00F1           00413         MOVWF   CNT1
+0151                  00414 TIMER_1000MS_LABEL1
+0151   30BF           00415         MOVLW   D'191'
+0152   00F2           00416         MOVWF   CNT2
+0153                  00417 TIMER_1000MS_LABEL2
+0153   0BF2           00418         DECFSZ  CNT2,F
+0154   2???           00419         GOTO    TIMER_1000MS_LABEL2
+0155   0000           00420         NOP
+0156   0BF1           00421         DECFSZ  CNT1,F
+0157   2???           00422         GOTO    TIMER_1000MS_LABEL1
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE 10
 
 
 LOC  OBJECT CODE     LINE SOURCE TEXT
   VALUE
 
-00D9   078C           00272     ADDWF PORTA, 1
-00DA   0008           00273     RETURN
-00DB                  00274 D11
-Warning[202]: Argument out of range.  Least significant bits used.
-00DB   3011           00275     MOVLW 0b11100011
-00DC   058C           00276     ANDWF PORTA, 1
-00DD   080D           00277     MOVF PORTB, W
-Warning[202]: Argument out of range.  Least significant bits used.
-00DE   3900           00278     ANDLW 0x11110000
-00DF   3E0D           00279     ADDLW 0x0d
-00E0   008D           00280     MOVWF PORTB
-00E1   3010           00281     MOVLW 0x10
-00E2   078C           00282     ADDWF PORTA, 1
-00E3   0008           00283     RETURN
-00E4                  00284 D12
-Warning[202]: Argument out of range.  Least significant bits used.
-00E4   3011           00285     MOVLW 0b11100011
-00E5   058C           00286     ANDWF PORTA, 1
-00E6   080D           00287     MOVF PORTB, W
-Warning[202]: Argument out of range.  Least significant bits used.
-00E7   3900           00288     ANDLW 0x11110000
-00E8   3E0E           00289     ADDLW 0x0e
-00E9   008D           00290     MOVWF PORTB
-00EA   3010           00291     MOVLW 0x10
-00EB   078C           00292     ADDWF PORTA, 1
-00EC   0008           00293     RETURN
-                      00294     
-00ED                  00295 TIMER_1MS
-00ED   3013           00296         MOVLW   D'19'
-00EE   00F1           00297         MOVWF   CNT1
-00EF                  00298 TIMER_1MS_LABEL1
-00EF   0000           00299         NOP
-00F0   0000           00300         NOP
-00F1   0BF1           00301         DECFSZ  CNT1,F
-00F2   2???           00302         GOTO    TIMER_1MS_LABEL1
-00F3   0008           00303         RETURN
-                      00304 
-00F4                  00305 TIMER_10MS
-00F4   3013           00306         MOVLW   D'19'
-00F5   00F1           00307         MOVWF   CNT1
-00F6                  00308 TIMER_10MS_LABEL1
-00F6   0000           00309         NOP
-00F7   0000           00310         NOP
-00F8   0BF1           00311         DECFSZ  CNT1,F
-00F9   2???           00312         GOTO    TIMER_10MS_LABEL1
-00FA   0008           00313         RETURN
-                      00314 
-                      00315         
-                      00316     
-00FB                  00317 TIMER_1000MS
-00FB   30AD           00318         MOVLW   D'173'
-00FC   00F1           00319         MOVWF   CNT1
-00FD                  00320 TIMER_1000MS_LABEL1
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE  8
-
-
-LOC  OBJECT CODE     LINE SOURCE TEXT
-  VALUE
-
-00FD   30BF           00321         MOVLW   D'191'
-00FE   00F2           00322         MOVWF   CNT2
-00FF                  00323 TIMER_1000MS_LABEL2
-00FF   0BF2           00324         DECFSZ  CNT2,F
-0100   2???           00325         GOTO    TIMER_1000MS_LABEL2
-0101   0000           00326         NOP
-0102   0BF1           00327         DECFSZ  CNT1,F
-0103   2???           00328         GOTO    TIMER_1000MS_LABEL1
-0104   0000           00329         NOP
-0105   0008           00330         RETURN
-                      00331 
+0158   0000           00423         NOP
+0159   0008           00424         RETURN
+                      00425 
 Warning[205]: Found directive in column 1. (end)
-0984 1CFF             00332 end
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE  9
+0984 1CFF             00426 end
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE 11
 
 
 SYMBOL TABLE
@@ -462,7 +572,7 @@ ADRES                             0000009B
 ADRESH                            0000009C
 ADRESL                            0000009B
 AHEN                              00000001
-ALL                               00000068
+ALL                               000000B7
 ANSA0                             00000000
 ANSA1                             00000001
 ANSA2                             00000002
@@ -489,7 +599,7 @@ BOEN                              00000004
 BORCON                            00000116
 BORRDY                            00000000
 BRG16                             00000003
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 10
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE 12
 
 
 SYMBOL TABLE
@@ -548,7 +658,7 @@ CCP1AS1                           00000005
 CCP1AS2                           00000006
 CCP1ASE                           00000007
 CCP1CON                           00000293
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 11
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE 13
 
 
 SYMBOL TABLE
@@ -607,7 +717,7 @@ CDAFVR1                           00000003
 CFGS                              00000006
 CHS0                              00000002
 CHS1                              00000003
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 12
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE 14
 
 
 SYMBOL TABLE
@@ -618,7 +728,7 @@ CHS3                              00000005
 CHS4                              00000006
 CKE                               00000006
 CKP                               00000004
-CLEAR                             00000059
+CLEAR                             000000AE
 CLKRCON                           0000039A
 CLKRDC0                           00000003
 CLKRDC1                           00000004
@@ -628,19 +738,18 @@ CLKRDIV2                          00000002
 CLKREN                            00000007
 CLKROE                            00000006
 CLKRSLR                           00000005
-CLOCK0                            00000025
-CLOCK1                            00000032
-CLOCK2                            0000003F
-CLOCK3                            0000004C
 CM1CON0                           00000111
 CM1CON1                           00000112
 CM2CON0                           00000113
 CM2CON1                           00000114
 CMOUT                             00000115
-CNT                               00000073
 CNT0                              00000070
 CNT1                              00000071
 CNT2                              00000072
+CNT3                              00000073
+CNT4                              00000074
+CNT4_DEFAULT                      000000C8
+CNT4_HALF                         00000064
 CPSCH0                            00000000
 CPSCH1                            00000001
 CPSCH2                            00000002
@@ -654,25 +763,25 @@ CPSRNG1                           00000003
 CREN                              00000004
 CSRC                              00000007
 C_SHAD                            00000000
-D1                                00000081
-D10                               000000D2
-D11                               000000DB
-D12                               000000E4
-D2                                0000008A
-D3                                00000093
-D4                                0000009C
-D5                                000000A5
-D6                                000000AE
-D7                                000000B7
-D8                                000000C0
-D9                                000000C9
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 13
+D1                                000000D0
+D10                               00000121
+D11                               0000012A
+D12                               00000133
+D2                                000000D9
+D3                                000000E2
+D4                                000000EB
+D5                                000000F4
+D6                                000000FD
+D7                                00000106
+D8                                0000010F
+D9                                00000118
+DACCON0                           00000118
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE 15
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-DACCON0                           00000118
 DACCON1                           00000119
 DACEN                             00000007
 DACLPS                            00000006
@@ -725,13 +834,13 @@ FSR1L                             00000006
 FSR1L_SHAD                        00000FEA
 FVRCON                            00000117
 FVREN                             00000007
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 14
+FVRRDY                            00000006
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE 16
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-FVRRDY                            00000006
 GCEN                              00000007
 GIE                               00000007
 GO                                00000001
@@ -784,13 +893,13 @@ LATA1                             00000001
 LATA2                             00000002
 LATA3                             00000003
 LATA4                             00000004
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 15
+LATA6                             00000006
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE 17
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-LATA6                             00000006
 LATA7                             00000007
 LATB                              0000010D
 LATB0                             00000000
@@ -843,13 +952,13 @@ NOT_RI                            00000002
 NOT_RMCLR                         00000003
 NOT_T1SYNC                        00000002
 NOT_TO                            00000004
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 16
+NOT_WPUEN                         00000007
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE 18
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-NOT_WPUEN                         00000007
 OERR                              00000001
 OPTION_REG                        00000095
 OSCCON                            00000099
@@ -902,13 +1011,13 @@ PORTA                             0000000C
 PORTB                             0000000D
 PR2                               0000001B
 PR4                               00000416
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 17
+PR6                               0000041D
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE 19
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-PR6                               0000041D
 PS0                               00000000
 PS1                               00000001
 PS2                               00000002
@@ -961,13 +1070,13 @@ SCKP                              00000004
 SCS0                              00000000
 SCS1                              00000001
 SDAHT                             00000003
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 18
+SDO1SEL                           00000006
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE 20
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-SDO1SEL                           00000006
 SEN                               00000000
 SENDB                             00000003
 SMP                               00000007
@@ -1020,13 +1129,13 @@ SSP2STAT                          0000021C
 SSPADD                            00000212
 SSPBUF                            00000211
 SSPCON                            00000215
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 19
+SSPCON1                           00000215
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE 21
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-SSPCON1                           00000215
 SSPCON2                           00000216
 SSPCON3                           00000217
 SSPEN                             00000005
@@ -1037,11 +1146,11 @@ SSPM3                             00000003
 SSPMSK                            00000213
 SSPOV                             00000006
 SSPSTAT                           00000214
-STATE0                            00000010
-STATE1                            00000012
-STATE2                            00000014
-STATE3                            00000016
-STATE4                            00000018
+STATE0                            00000012
+STATE1                            00000017
+STATE2                            0000001B
+STATE3                            0000001F
+STATE4                            00000023
 STATUS                            00000003
 STATUS_SHAD                       00000FE4
 STKOVF                            00000007
@@ -1079,13 +1188,13 @@ T1OSCEN                           00000003
 T1OSCR                            00000007
 T2CKPS0                           00000000
 T2CKPS1                           00000001
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 20
+T2CON                             0000001C
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE 22
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
-T2CON                             0000001C
 T2OUTPS0                          00000003
 T2OUTPS1                          00000004
 T2OUTPS2                          00000005
@@ -1104,13 +1213,15 @@ T6OUTPS0                          00000003
 T6OUTPS1                          00000004
 T6OUTPS2                          00000005
 T6OUTPS3                          00000006
-TIMER_1000MS                      000000FB
-TIMER_1000MS_LABEL1               000000FD
-TIMER_1000MS_LABEL2               000000FF
-TIMER_10MS                        000000F4
-TIMER_10MS_LABEL1                 000000F6
-TIMER_1MS                         000000ED
-TIMER_1MS_LABEL1                  000000EF
+TIMER_1000MS                      0000014F
+TIMER_1000MS_LABEL1               00000151
+TIMER_1000MS_LABEL2               00000153
+TIMER_10MS                        00000145
+TIMER_10MS_LABEL1                 00000147
+TIMER_10MS_LABEL2                 00000149
+TIMER_LED                         0000013C
+TIMER_LED_LABEL1                  0000013E
+TIMER_LED_LABEL2                  00000140
 TMP                               00000074
 TMR0                              00000015
 TMR0CS                            00000005
@@ -1137,13 +1248,13 @@ TMR4IE                            00000001
 TMR4IF                            00000001
 TMR4ON                            00000002
 TMR6                              0000041C
-TMR6IE                            00000003
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 21
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE 23
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+TMR6IE                            00000003
 TMR6IF                            00000003
 TMR6ON                            00000002
 TOSH                              00000FEF
@@ -1196,13 +1307,13 @@ WPUA                              0000020C
 WPUA5                             00000005
 WPUB                              0000020D
 WPUB0                             00000000
-WPUB1                             00000001
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 22
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE 24
 
 
 SYMBOL TABLE
   LABEL                             VALUE 
 
+WPUB1                             00000001
 WPUB2                             00000002
 WPUB3                             00000003
 WPUB4                             00000004
@@ -1224,7 +1335,6 @@ _BOREN_SBODEN                     00003BFF
 _BORV_19                          00003FFF
 _BORV_HI                          00003BFF
 _BORV_LO                          00003FFF
-_CLEAR                            00000023
 _CLKOUTEN_OFF                     00003FFF
 _CLKOUTEN_ON                      000037FF
 _CONFIG1                          00008007
@@ -1256,7 +1366,7 @@ _MCLRE_OFF                        00003FBF
 _MCLRE_ON                         00003FFF
 _PLLEN_OFF                        00003EFF
 _PLLEN_ON                         00003FFF
-MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  12:56:07         PAGE 23
+MPASM 5.87  /HOME/USER/PIC-HOURGLASS/PIC-HOU   10-10-2024  23:55:32         PAGE 25
 
 
 SYMBOL TABLE
@@ -1264,10 +1374,17 @@ SYMBOL TABLE
 
 _PWRTE_OFF                        00003FFF
 _PWRTE_ON                         00003FDF
-_STATE0                           0000001B
-_STATE1                           0000001D
-_STATE2                           0000001F
-_STATE3                           00000021
+_STATE0                           00000026
+_STATE0_DEC                       0000004A
+_STATE0_ON                        0000003C
+_STATE1                           0000004C
+_STATE2                           00000059
+_STATE2_DEC                       0000007E
+_STATE2_ON                        00000070
+_STATE3                           00000080
+_STATE4                           0000008D
+_STATE4_DEC                       000000AC
+_STATE4_ON                        0000009E
 _STVREN_OFF                       00003DFF
 _STVREN_ON                        00003FFF
 _WDTE_NSLEEP                      00003FF7
@@ -1281,7 +1398,7 @@ _WRT_OFF                          00003FFF
 __16F1827                         00000001
 
 Errors   :     0
-Warnings :    33 reported,     0 suppressed
-Messages :     8 reported,     0 suppressed
+Warnings :    31 reported,     0 suppressed
+Messages :    14 reported,     0 suppressed
 
 

@@ -2,44 +2,48 @@ Warning[205] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 1 : Found directi
 Warning[205] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 12 : Found directive in column 1. (__CONFIG)
 Warning[205] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 13 : Found directive in column 1. (__CONFIG)
 Warning[205] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 15 : Found directive in column 1. (ORG)
-Message[302] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 24 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 29 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[302] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 31 : Register in operand not in bank 0.  Ensure that bank bits are correct.
-Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 42 : Using default destination of 1 (file).
-Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 48 : Using default destination of 1 (file).
-Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 53 : Using default destination of 1 (file).
-Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 58 : Using default destination of 1 (file).
-Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 63 : Using default destination of 1 (file).
-Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 104 : Using default destination of 1 (file).
-Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 107 : Using default destination of 1 (file).
-Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 163 : Using default destination of 1 (file).
-Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 166 : Using default destination of 1 (file).
-Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 216 : Using default destination of 1 (file).
-Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 219 : Using default destination of 1 (file).
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 224 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 228 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 262 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 265 : Argument out of range.  Least significant bits used.
+Message[302] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 22 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 28 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 33 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 35 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 46 : Using default destination of 1 (file).
+Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 54 : Using default destination of 1 (file).
+Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 62 : Using default destination of 1 (file).
+Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 70 : Using default destination of 1 (file).
+Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 78 : Using default destination of 1 (file).
+Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 86 : Using default destination of 1 (file).
+Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 94 : Using default destination of 1 (file).
+Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 102 : Using default destination of 1 (file).
+Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 141 : Using default destination of 1 (file).
+Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 144 : Using default destination of 1 (file).
+Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 181 : Using default destination of 1 (file).
+Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 184 : Using default destination of 1 (file).
+Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 221 : Using default destination of 1 (file).
+Message[305] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 224 : Using default destination of 1 (file).
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 247 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 251 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 258 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 261 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 269 : Argument out of range.  Least significant bits used.
 Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 272 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 275 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 282 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 285 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 292 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 295 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 280 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 283 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 291 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 294 : Argument out of range.  Least significant bits used.
 Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 302 : Argument out of range.  Least significant bits used.
 Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 305 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 312 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 315 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 322 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 325 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 332 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 313 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 316 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 324 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 327 : Argument out of range.  Least significant bits used.
 Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 335 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 342 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 345 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 352 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 355 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 362 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 365 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 372 : Argument out of range.  Least significant bits used.
-Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 375 : Argument out of range.  Least significant bits used.
-Warning[205] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 426 : Found directive in column 1. (end)
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 338 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 346 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 349 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 357 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 360 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 368 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 371 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 379 : Argument out of range.  Least significant bits used.
+Warning[202] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 382 : Argument out of range.  Least significant bits used.
+Warning[205] /home/user/pic-hourglass/pic-hourgalss.X/main.asm 430 : Found directive in column 1. (end)

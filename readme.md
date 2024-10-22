@@ -21,3 +21,6 @@ sudo apt-get install libc6:i386 libx11-6:i386 libxext6:i386 libstdc++6:i386 libe
 ```
 sudo ./MPLABX-v5.35-linux-installer.sh
 ```
+
+# License
+MIT License

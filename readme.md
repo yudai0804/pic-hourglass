@@ -1,4 +1,11 @@
-![](./PXL_20241012_011318210.jpg)
+回路図  
+![](./docs/circuit.jpg)
+
+ステート  
+![](./docs/state1-17.jpg)
+
+![](./docs/state18-21.jpg)
+
 
 # MPLAB setup
 MPLABは5.35以下じゃないとアセンブリがデフォルトで入っていないので注意

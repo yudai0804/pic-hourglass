@@ -24,7 +24,7 @@ CLEAN_SUBPROJECTS=${CLEAN_SUBPROJECTS_${SUBPROJECTS}}
 
 
 # Project Name
-PROJECTNAME=pic-hourgalss.X
+PROJECTNAME=pic-hourglass.X
 
 # Active Configuration
 DEFAULTCONF=default

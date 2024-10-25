@@ -3,7 +3,7 @@
     <type>com.microchip.mplab.nbide.embedded.makeproject</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/make-project/1">
-            <name>pic-hourgalss</name>
+            <name>pic-hourglass</name>
             <creation-uuid>1b0051b7-f68d-4bff-af5d-1517463d3990</creation-uuid>
             <make-project-type>0</make-project-type>
             <c-extensions/>

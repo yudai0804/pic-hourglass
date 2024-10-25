@@ -1,7 +1,7 @@
 # pic-hourglass
 1分から12分を計れるデジタル砂時計です。  
 プログラムはアセンブリで書きました。  
-プログラムはpic-hourglass.X/main.asmです。  
+プログラムはpic-hourglass.X/main.asmにあります。  
 
 # License
 MIT License
